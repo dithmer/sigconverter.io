@@ -20,8 +20,7 @@ def get_port_from_version(version):
     if re.match(pattern, version):
         return int(f'8{version.replace(".", "")}')
     elif version == "latest":
-        latest_version = sorted(
-            sigma_versions, key=version_key, reverse=True)[0]
+        latest_version = sorted(sigma_versions, key=version_key, reverse=True)[0]
         return int(f'8{latest_version.replace(".", "")}')
     else:
         return None
@@ -69,4 +68,9 @@ def convert(version):
 
 
 if __name__ == "__main__":
+    # show variables on startup for debugging: APPLICATION_ROOT, PORT, PREFERRED_URL_SCHEME, SCRIPT_NAME
+    print(f"APPLICATION_ROOT: {os.environ.get('APPLICATION_ROOT', '/')}")
+    print(f"PORT: {os.environ.get('PORT', '8000')}")
+    print(f"PREFERRED_URL_SCHEME: {os.environ.get('PREFERRED_URL_SCHEME', 'http')}")
+    print(f"SCRIPT_NAME: {os.environ.get('SCRIPT_NAME', '')}")
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 8000)))
